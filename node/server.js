@@ -14,8 +14,7 @@ const pool = mysql.createPool({
     user : "root",
     password : "password",
     database : "pitapaldb",
-    insecureAuth : true,
-    port: "3009"
+    insecureAuth : true
   });
 
 //test generic serve access
