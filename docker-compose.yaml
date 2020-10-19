@@ -9,8 +9,6 @@ services:
     build: ./node/
     ports:
       - 3008:3008
-    networks:
-      - my-net
       
   mysqlpitapal:
     image: mysqlpitapal
@@ -21,8 +19,6 @@ services:
     build: ./database/
     ports:
       - 3009:3009
-    networks:
-      - my-net
       
 networks:
   default:
