@@ -6,7 +6,7 @@ const app = express();
 // call cors
 app.use(cors()); 
 
-const port = 3009;
+const port = 3008;
 
 //connection for database
 const pool = mysql.createPool({
@@ -15,7 +15,7 @@ const pool = mysql.createPool({
     password : "password",
     database : "pitapaldb",
     insecureAuth : true,
-    port: port
+    port: 3009
   });
 
 //test generic serve access
