@@ -24,5 +24,7 @@ services:
     networks:
       - my-net
       
-networks: 
-  my-net:
+networks:
+  default:
+    external:
+      name: my-net
