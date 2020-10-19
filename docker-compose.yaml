@@ -12,14 +12,12 @@ services:
       
   mysql:
     image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: pitapaldb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
     restart: unless-stopped
     container_name: mysql
     environment:
+      MYSQL_DATABASE: pitapaldb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     build: ./database/
     ports:
