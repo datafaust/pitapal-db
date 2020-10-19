@@ -6,13 +6,15 @@ const app = express();
 // call cors
 app.use(cors()); 
 
+const port = 3008;
+
 //connection for database
 const pool = mysql.createPool({
-    host : "mysql",  
+    host : "dbpitapalapi",  
     user : "root",
     password : "password",
-    database : "platenet",
-    insecureAuth : true
+    database : "pitapaldb",
+    insecureAuth : true,
   });
 
 //test generic serve access
@@ -23,7 +25,7 @@ app.get('/test',  function(req,res){
     var plate = req.params.plate;
     console.log(plate)
     console.log('attempting connection')
-    var sql = "SELECT * FROM platenet.my_data";
+    var sql = "SELECT * FROM pitapaldb.carts";
     pool.query(sql, plate, function(err, results) {
         if(err) {
             return res.send(err)
@@ -38,5 +40,5 @@ app.get('/test',  function(req,res){
 
 
 //set server to listen 
-app.listen(3001,()=>console.log('Express Server is Running on port 3001'));
+app.listen(port,()=>console.log(`Express Server is Running on port ${port}`));
 
