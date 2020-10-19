@@ -6,7 +6,7 @@ const app = express();
 // call cors
 app.use(cors()); 
 
-const port = 3008;
+const port = 3009;
 
 //connection for database
 const pool = mysql.createPool({
@@ -15,7 +15,7 @@ const pool = mysql.createPool({
     password : "password",
     database : "pitapaldb",
     insecureAuth : true,
-    port: "3009"
+    port: port
   });
 
 //test generic serve access
@@ -23,15 +23,11 @@ app.get('/', (req, res) => res.send('wassup!'))
 
 //test records from myql
 app.get('/test',  function(req,res){
-    var plate = req.params.plate;
-    console.log(plate)
-    console.log('attempting connection')
-    var sql = "SELECT * FROM pitapaldb.carts";
-    pool.query(sql, plate, function(err, results) {
+    var sql = "SELECT * FROM pitapaldb.carts;";
+    pool.query(sql, function(err, results) {
         if(err) {
             return res.send(err)
         } else {
-            console.log(results)
             return res.json({
                 data: results
             })
