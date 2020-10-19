@@ -10,10 +10,10 @@ services:
     ports:
       - 3306:3306
       
-  mysqlpitapal:
-    image: mysqlpitapal
+  mysql:
+    image: mysql
     restart: unless-stopped
-    container_name: mysqlpitapal
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
     build: ./database/
