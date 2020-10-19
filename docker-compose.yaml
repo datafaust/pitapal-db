@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+
+  dbpitapalapi:
+    image: dbpitapalapi
+    restart: unless-stopped
+    container_name: dbpitapalapi
+    build: ./node/
+    ports:
+      - 3008:3008
+    networks:
+      - my-net
+      
+  mysqlpitapal:
+    image: mysqlpitapal
+    restart: unless-stopped
+    container_name: mysqlpitapal
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    build: ./database/
+    ports:
+      - 3009:3009
+    networks:
+      - my-net
+      
+networks: 
+  my-net:
