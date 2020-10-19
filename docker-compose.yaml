@@ -8,7 +8,7 @@ services:
     container_name: dbpitapalapi
     build: ./node/
     ports:
-      - 3306:3306
+      - 3008:3008
       
   mysql:
     image: mysql
@@ -18,7 +18,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
     build: ./database/
     ports:
-      - 3009:3009
+      - 3306:3306
       
 networks:
   default:
