@@ -58,7 +58,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
         city_id:req.query.city_id,
         phone:req.query.phone,
         email:req.query.email,
-        time_joined:req.query.time,
+        time_joined:req.query.time_joined,
         cart_name: req.query.cart_name,
         cart_address: req.query.cart_address,
         category: req.query.cart
