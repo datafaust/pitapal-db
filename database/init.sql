@@ -16,7 +16,8 @@ CREATE TABLE carts (
 );
 
 INSERT INTO carts(id,lat,lon,address,status,city_id)
-VALUES (10010, 43.0041, -74.3980, '110-23 55 ave', TRUE, 1);
+VALUES (1001-0192, 43.0041, -74.3980, '110-23 55 ave', TRUE, 1),
+       (1347-0982, 43.0198, -74.3965, '23-48 Broadway', TRUE, 1);
 
 CREATE TABLE city (
   id int PRIMARY KEY,
@@ -24,14 +25,25 @@ CREATE TABLE city (
   zip_code int
 );
 
+INSERT INTO city(id,city_name,zip_code)
+VALUES (1, 'New York', 11368),
+       (2, 'Philadelphia', 02278);
+
 CREATE TABLE customer (
   id int PRIMARY KEY,
   customer_name varchar(255),
   city_id int,
   phone varchar(255),
   email varchar(255),
-  time_joined timestamp
+  time_joined timestamp,
+  category varchar(255)
 );
+
+INSERT INTO customer (id,customer_name,city_id,phone,email,time_joined, category)
+VALUES (1234-5678, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01', 'customer'),
+       (1347-0982, 'Adels Halal Cart', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01', 'cart'),
+       (1001-0192, 'Mamoud Halal Cart', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01', 'cart');
+
 
 CREATE TABLE menu_item (
   id int PRIMARY KEY,
