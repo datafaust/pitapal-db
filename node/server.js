@@ -21,7 +21,7 @@ const pool = mysql.createPool({
 app.get('/', (req, res) => res.send('wassup!'))
 
 //PULL ALL CARTS
-app.get('/test',  function(req,res){
+app.get('/carts',  function(req,res){
     var sql = "SELECT * FROM pitapaldb.carts;";
     pool.query(sql, function(err, results) {
         if(err) {
