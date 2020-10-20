@@ -6,17 +6,6 @@ ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges;
 
 
-CREATE VIEW carts AS 
-SELECT
-id,
-'43.0000' as lat,
-'-74.0000' AS lon,
-address,
-1 as status,
-city_id as city_id
-FROM
-WHERE category = 'cart';
-
 CREATE TABLE city (
   id int PRIMARY KEY,
   city_name varchar(255),
@@ -38,9 +27,22 @@ CREATE TABLE customer (
 );
 
 INSERT INTO customer (id,customer_name,city_id,phone,email,time_joined, category)
-VALUES (1234-5678, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01', 'customer'),
-       (1347-0982, 'Adels Halal Cart', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01', 'cart'),
-       (1001-0192, 'Mamoud Halal Cart', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01', 'cart');
+VALUES (1234, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01', 'customer'),
+       (1347, 'Adels Halal Cart', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01', 'cart'),
+       (1001, 'Mamoud Halal Cart', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01', 'cart');
+
+
+CREATE VIEW carts AS 
+SELECT
+id,
+'43.0000' as lat,
+'-74.0000' AS lon,
+address,
+1 as status,
+city_id as city_id
+FROM
+customer
+WHERE category = 'cart';
 
 
 CREATE TABLE menu_item (
