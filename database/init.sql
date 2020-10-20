@@ -16,7 +16,7 @@ CREATE TABLE carts (
 );
 
 INSERT INTO carts(id,lat,lon,address,status,city_id)
-VALUES (10010, 43.0041, -74.3980, '110-23 55 ave', 'yes', 1);
+VALUES (10010, 43.0041, -74.3980, '110-23 55 ave', TRUE, 1);
 
 CREATE TABLE city (
   id int PRIMARY KEY,
