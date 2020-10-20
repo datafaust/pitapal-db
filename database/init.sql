@@ -23,21 +23,23 @@ CREATE TABLE customer (
   phone varchar(255),
   email varchar(255),
   time_joined timestamp,
+  cart_address varchar(255),
   category varchar(255)
 );
 
-INSERT INTO customer (id,customer_name,city_id,phone,email,time_joined, category)
-VALUES (1234, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01', 'customer'),
-       (1347, 'Adels Halal Cart', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01', 'cart'),
-       (1001, 'Mamoud Halal Cart', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01', 'cart');
+INSERT INTO customer (id,customer_name,city_id,phone,email,time_joined,cart_name,cart_address, category)
+VALUES (1234, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01','', '110-23', 'customer'),
+       (1347, 'Adel Marouk', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01','Adels Halal Cart','134-87', 'cart'),
+       (1001, 'Mamoud Hassan', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01','Mamoud Halal Cart','12-87', 'cart');
 
 
 CREATE VIEW carts AS 
 SELECT
 id,
+cart_name as cart_name,
 '43.0000' as lat,
 '-74.0000' AS lon,
-address,
+cart_address as address,
 1 as status,
 city_id as city_id
 FROM
