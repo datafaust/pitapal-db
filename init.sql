@@ -1,4 +1,4 @@
-CREATE DATABASE pitapaldb;
+CREATE DATABASE IF NOT EXISTS pitapaldb;
 USE pitapaldb;
 SET SQL_SAFE_UPDATES = 0;
 
