@@ -6,24 +6,11 @@ ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges;
 
 
---CREATE TABLE carts (
---  id int PRIMARY KEY AUTO_INCREMENT,
---  lat float,
---  lon float,
---  address varchar(255),
---  status boolean,
---  city_id int
---);
-
---INSERT INTO carts(id,lat,lon,address,status,city_id)
---VALUES (1001-0192, 43.0041, -74.3980, '110-23 55 ave', TRUE, 1),
---       (1347-0982, 43.0198, -74.3965, '23-48 Broadway', TRUE, 1);
-
 CREATE VIEW carts AS 
 SELECT
 id,
 '43.0000' as lat,
-'-74.0000' AS long,
+'-74.0000' AS lon,
 address,
 1 as status,
 city_id as city_id
