@@ -23,6 +23,7 @@ CREATE TABLE customer (
   phone varchar(255),
   email varchar(255),
   time_joined timestamp,
+  cart_name varchar(255),
   cart_address varchar(255),
   category varchar(255)
 );
