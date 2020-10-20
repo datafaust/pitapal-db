@@ -49,6 +49,34 @@ app.get('/customer',  function(req,res){
 });
 
 
+//POST TO DATABASE
+app.post('/addCustomer',  cors(), (req, res) => {
+    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
+    var my_data = {
+        id: req.query.id,
+        customer_name: req.query.customer_name,
+        city_id:req.query.city_id,
+        phone:req.query.phone,
+        email:req.query.email,
+        time_joined:req.query.time,
+        category: req.query.cart
+       }
+       // now the createStudent is an object you can use in your database insert logic.
+       pool.query('INSERT INTO pitapaldb.customer SET ?', my_data, function (err, results) {
+        if(err) {
+            console.log(err)
+            return res.send(err)
+            
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+
 //set server to listen 
 app.listen(port,()=>console.log(`Express Server is Running on port ${port}`));
 
