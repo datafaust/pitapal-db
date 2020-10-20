@@ -61,7 +61,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
         time_joined:req.query.time_joined,
         cart_name: req.query.cart_name,
         cart_address: req.query.cart_address,
-        category: req.query.cartegory
+        category: req.query.category
        }
        // now the createStudent is an object you can use in your database insert logic.
        pool.query('INSERT INTO pitapaldb.customer SET ?', my_data, function (err, results) {
