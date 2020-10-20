@@ -59,6 +59,8 @@ app.post('/addCustomer',  cors(), (req, res) => {
         phone:req.query.phone,
         email:req.query.email,
         time_joined:req.query.time,
+        cart_name: req.query.cart_name,
+        cart_address: req.query.cart_address,
         category: req.query.cart
        }
        // now the createStudent is an object you can use in your database insert logic.
