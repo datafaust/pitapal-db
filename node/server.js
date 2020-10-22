@@ -95,7 +95,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
 //POST TO PENDING MENU
 app.post('/addMenuItem',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
-    var my_data = {
+      var values = {
         id: req.query.id,
         cart_id: req.query.cart_id,
         item_name: req.query.item_name,
@@ -104,17 +104,21 @@ app.post('/addMenuItem',  cors(), (req, res) => {
         price: req.query.price,
         active: req.query.active
        }
+
+       let sql = 'INSERT INTO pitapaldb.menu_item_stg(id, cart_id, item_name, category_id, description, price, active) VALUES ?';
+
        // now the createStudent is an object you can use in your database insert logic.
-       pool.query('INSERT INTO pitapaldb.menu_item_stg SET ?', my_data, function (err, results) {
+       pool.query(sql, values, function (err, results) {
         if(err) {
             console.log(err)
             return res.send(err)
             
         } else {
             console.log(results)
-            return res.json({
-                data: results
-            })
+            //return res.json({
+            //    data: results
+            //})
+            return res.status(HttpStatus.OK).json({ message: 'ok', status: HttpStatus.OK })
         }
     });
 });
