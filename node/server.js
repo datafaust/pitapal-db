@@ -48,6 +48,20 @@ app.get('/customer',  function(req,res){
     });
 });
 
+//PULL ALL MENU ITEMS FROM STAGING
+app.get('/menus',  function(req,res){
+    var sql = "SELECT * FROM pitapaldb.menu_item_stg;";
+    pool.query(sql, function(err, results) {
+        if(err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
 
 //POST TO DATABASE
 app.post('/addCustomer',  cors(), (req, res) => {
