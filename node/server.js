@@ -83,6 +83,7 @@ app.post('/addMenuItem',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
     var my_data = {
         id: req.query.id,
+        cart_id: req.query.cart_id,
         item_name: req.query.item_name,
         category_id: req.query.category_id,
         description: req.query.description,
