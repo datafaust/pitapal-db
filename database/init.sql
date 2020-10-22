@@ -47,6 +47,16 @@ FROM
 customer
 WHERE category = 'cart';
 
+CREATE TABLE menu_item_stg (
+  id int PRIMARY KEY,
+  item_name varchar(255),
+  category_id int,
+  offer_id int,
+  description text,
+  ingredients text,
+  price decimal(12,2),
+  active boolean
+);
 
 CREATE TABLE menu_item (
   id int PRIMARY KEY,

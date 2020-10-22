@@ -78,6 +78,32 @@ app.post('/addCustomer',  cors(), (req, res) => {
     });
 });
 
+//POST TO PENDING MENU
+app.post('/addMenuItem',  cors(), (req, res) => {
+    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
+    var my_data = {
+        id: req.query.id,
+        item_name: req.query.item_name,
+        category_id: req.query.category_id,
+        description: req.query.description,
+        price: req.query.price,
+        active: req.query.active
+       }
+       // now the createStudent is an object you can use in your database insert logic.
+       pool.query('INSERT INTO pitapaldb.menu_item_stg SET ?', my_data, function (err, results) {
+        if(err) {
+            console.log(err)
+            return res.send(err)
+            
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
 
 //set server to listen 
 app.listen(port,()=>console.log(`Express Server is Running on port ${port}`));
