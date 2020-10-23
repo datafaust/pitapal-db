@@ -49,6 +49,7 @@ WHERE category = 'cart';
 
 CREATE TABLE menu_item_stg (
   id int PRIMARY KEY,
+  cart_id varchar(255),
   item_name varchar(255),
   category_id int,
   offer_id int,
@@ -60,6 +61,7 @@ CREATE TABLE menu_item_stg (
 
 CREATE TABLE menu_item (
   id int PRIMARY KEY,
+  cart_id varchar(255),
   item_name varchar(255),
   category_id int,
   offer_id int,

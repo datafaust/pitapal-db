@@ -7,10 +7,12 @@ const app = express();
 app.use(cors()); 
 
 const port = 3008;
+//host = mysql
 
 //connection for database
 const pool = mysql.createPool({
     host : "mysql",  
+    //host: '192.168.1.173',
     user : "root",
     password : "password",
     database : "pitapaldb",
@@ -93,7 +95,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
 });
 
 //POST TO PENDING MENU
-app.post('/addMenuItem',  cors(), (req, res) => {
+app.put('/addMenuItem',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
       var values = {
         id: req.query.id,
@@ -105,10 +107,48 @@ app.post('/addMenuItem',  cors(), (req, res) => {
         active: req.query.active
        }
 
+       // now the createStudent is an object you can use in your database insert logic.
+       pool.query('INSERT INTO pitapaldb.menu_item_stg SET ?', values, function (err, results) {
+        if(err) {
+            console.log(err)
+            return res.send(err)
+            
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+
+
+//POST TO PENDING MENU
+app.put('/addMenuItem_one',  cors(), (req, res) => {
+    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
+      //var values = {
+      //  id: req.query.id,
+      //  cart_id: req.query.cart_id,
+      //  item_name: req.query.item_name,
+      //  category_id: req.query.category_id,
+      //  description: req.query.description,
+      //  price: req.query.price,
+      //  active: req.query.active
+       //}
+
+       //var values = [
+       // ['12345','2345' ,'chicken', '1', 'blah blah', 6, 1],
+       // ['123456', '2346','lamb', '2', 'blah blah', 3, 1],
+       // ];
+       //var values = JSON.parse(req); 
+       
+       //console.log(req.params);
+
        let sql = 'INSERT INTO pitapaldb.menu_item_stg(id, cart_id, item_name, category_id, description, price, active) VALUES ?';
 
        // now the createStudent is an object you can use in your database insert logic.
-       pool.query(sql, values, function (err, results) {
+       pool.query(sql, [req], function (err, results) {
         if(err) {
             console.log(err)
             return res.send(err)
@@ -118,7 +158,7 @@ app.post('/addMenuItem',  cors(), (req, res) => {
             //return res.json({
             //    data: results
             //})
-            return res.status(HttpStatus.OK).json({ message: 'ok', status: HttpStatus.OK })
+            //return res.status(HttpStatus.OK).json({ message: 'ok', status: HttpStatus.OK })
         }
     });
 });
