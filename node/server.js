@@ -95,7 +95,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
 });
 
 //POST TO PENDING MENU
-app.put('/addMenuItem',  cors(), (req, res) => {
+app.post('/addMenuItem',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
       var values = {
         id: req.query.id,
