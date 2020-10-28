@@ -7,7 +7,7 @@ flush privileges;
 
 
 CREATE TABLE city (
-  id int PRIMARY KEY,
+  id int,
   city_name varchar(255),
   zip_code int
 );
