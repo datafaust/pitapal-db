@@ -76,7 +76,7 @@ VALUES
 CREATE TABLE in_offer (
   id int PRIMARY KEY,
   offer_id int,
-  menu_item_id int
+  menu_item_id varchar(255)
 );
 
 INSERT INTO in_offer(id,offer_id,menu_item_id)
@@ -98,10 +98,10 @@ VALUES
 
 CREATE TABLE placed_orders (
   id int PRIMARY KEY,
-  cart_id int,
+  cart_id varchar(255),
   order_time datetime,
-  customer_id int,
-  menu_item_id int,
+  customer_id varchar(255),
+  menu_item_id varchar(255),
   condiments json,
   price decimal(12,2),
   discount decimal(12,2),
