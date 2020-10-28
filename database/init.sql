@@ -44,7 +44,7 @@ CREATE TABLE carts (
   cart_address varchar(255),
   active boolean,
   city_id int
-)
+);
 
 INSERT INTO carts(id,customer_id,cart_name,lat,lon,cart_address,active,city_id)
 VALUES
