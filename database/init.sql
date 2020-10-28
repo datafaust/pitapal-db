@@ -12,82 +12,77 @@ CREATE TABLE city (
   zip_code int
 );
 
-INSERT INTO city(id,city_name,zip_code)
-VALUES (1, 'New York', 11368),
-       (2, 'Philadelphia', 02278);
+INSERT INTO city (id, city_name, zip_code)
+VALUES
+(1,'New York', 11368),
+(1,'New York', 11106),
+(2,'Philadelphia',11456),
+(2,'Philadelphia',11457),
+(3,'Boston',11256),
+(3,'Boston',11389);
 
 CREATE TABLE customer (
-  id int PRIMARY KEY,
+  id varchar(255) PRIMARY KEY,
   customer_name varchar(255),
   city_id int,
   phone varchar(255),
   email varchar(255),
-  time_joined timestamp,
+  time_joined timestamp
+);
+
+INSERT INTO customer(id,customer_name,city_id,phone,email,time_joined)
+VALUES
+('12345678', 'John Smith', 1, '7189786524', 'jsmith@gmail.com', '2020-10-01 22:00:00'),
+('12345679', 'Allam Fromberg', 1, '6469786578', 'aberg@gmail.com', '2020-10-04 13:00:00');
+
+CREATE TABLE carts (
+  id varchar(255) PRIMARY KEY,
+  customer_id varchar(255),
   cart_name varchar(255),
+  lat float,
+  lon float,
   cart_address varchar(255),
-  category varchar(255)
-);
+  active boolean,
+  city_id int
+)
 
-INSERT INTO customer (id,customer_name,city_id,phone,email,time_joined,cart_name,cart_address, category)
-VALUES (1234, 'John Smith', 1, '646-639-3360', 'joselopez@gmail.com', '2020-11-01 11:01','', '110-23', 'customer'),
-       (1347, 'Adel Marouk', 1, '347-908-0987', 'adelCart@gmail.com', '2019-10-07 12:01','Adels Halal Cart','134-87', 'cart'),
-       (1001, 'Mamoud Hassan', 1, '245-098-0989', 'mhalal@gmail.com', '2019-09-04 13:01','Mamoud Halal Cart','12-87', 'cart');
+INSERT INTO carts(id,customer_id,cart_name,lat,lon,cart_address,active,city_id)
+VALUES
+('12345678-1','12345678', 'Rafiqquis Halal', '43.0000', '-73.0000', '23-55 Broadway Street', '1',1),
+('12345678-2','12345678', 'Rafiqquis Halal', '43.1212', '-73.2431', '57-34 Main Street', '1',1),
+('12345679-1','12345679', 'Adels Halal', '43.0987', '-73.0987', '110-32 Munch Street', '1',1);;
 
-
-CREATE VIEW carts AS 
-SELECT
-id,
-cart_name as cart_name,
-'43.0000' as lat,
-'-74.0000' AS lon,
-cart_address as address,
-1 as status,
-city_id as city_id
-FROM
-customer
-WHERE category = 'cart';
-
-CREATE TABLE menu_item_stg (
-  id int PRIMARY KEY,
-  cart_id varchar(255),
-  item_name varchar(255),
-  category_id int,
-  offer_id int,
-  description text,
-  ingredients text,
-  price decimal(12,2),
-  active boolean
-);
 
 CREATE TABLE menu_item (
   id int PRIMARY KEY,
-  cart_id varchar(255),
+  customer_id varchar(255),
+  cart_id int,
   item_name varchar(255),
   category_id int,
   offer_id int,
-  description text,
-  ingredients text,
+  cart_description text,
+  condiments Json,
   price decimal(12,2),
   active boolean
 );
 
-CREATE TABLE category (
-  id int PRIMARY KEY,
-  category_name varchar(255)
-);
+INSERT INTO menu_item(id,customer_id,cart_id,item_name,category_id,offer_id,cart_description,condiments,price,active)
+VALUES
+('12345678-1-1','12345678','12345678-1','Chicken Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: true },{ id: 3, value: "green sauce", isChecked: false },{ id: 3, value: "salad", isChecked: false }]',6,1),
+('12345678-1-2','12345678','12345678-1','Lamb Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: false },{ id: 3, value: "green sauce", isChecked: true },{ id: 3, value: "salad", isChecked: false }]',6,1),
+('12345679-1-1','12345679','12345679-1','Combo Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: false },{ id: 3, value: "green sauce", isChecked: true },{ id: 3, value: "salad", isChecked: true }]',7,1);
 
-CREATE TABLE condiments (
-  id int PRIMARY KEY,
-  condiment_name varchar(255),
-  include boolean,
-  price decimal(12,2)
-);
 
 CREATE TABLE in_offer (
   id int PRIMARY KEY,
   offer_id int,
   menu_item_id int
 );
+
+INSERT INTO in_offer(id,offer_id,menu_item_id)
+VALUES
+(12345,1,'12345678-1-1'),
+(12346,2,'12345678-1-2');
 
 CREATE TABLE offer (
   id int PRIMARY KEY,
@@ -96,16 +91,23 @@ CREATE TABLE offer (
   offer_price decimal(12,2)
 );
 
+INSERT INTO offer(id,datetime_active_from,datetime_active_to,offer_price)
+VALUES
+(1,'2020-10-15-01 00:00', '2020-12-21-01 00:00',4),
+(2,'2020-09-15-01 00:00', '2020-11-21-01 00:00',3);
+
 CREATE TABLE placed_orders (
   id int PRIMARY KEY,
-  restaurant_id int,
+  cart_id int,
   order_time datetime,
   customer_id int,
+  menu_item_id int,
+  condiments json,
   price decimal(12,2),
   discount decimal(12,2),
   final_price decimal(12,2),
   comment text,
-  ts timestamp
+  order_datetime timestamp
 );
 
 CREATE TABLE comment (
@@ -122,6 +124,7 @@ CREATE TABLE in_order (
   menu_item_id int,
   quantity int,
   item_price int,
+  condiments json,
   price decimal(12,2),
   comment text
 );
@@ -136,22 +139,4 @@ CREATE TABLE order_status (
 CREATE TABLE status_catalogue (
   id int,
   status_nam varchar(255)
-);
-
-CREATE TABLE pending_menu_item (
-  id int PRIMARY KEY,
-  item_name varchar(255),
-  category_id int,
-  offer_id int,
-  description text,
-  ingredients text,
-  price decimal(12,2),
-  active boolean
-);
-
-CREATE TABLE pending_condiments (
-  id int PRIMARY KEY,
-  condiment_name varchar(255),
-  include boolean,
-  price decimal(12,2)
 );
