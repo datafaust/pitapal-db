@@ -54,23 +54,23 @@ VALUES
 
 
 CREATE TABLE menu_item (
-  id int PRIMARY KEY,
+  id varchar(255) PRIMARY KEY,
   customer_id varchar(255),
-  cart_id int,
+  cart_id varchar(255),
   item_name varchar(255),
   category_id int,
   offer_id int,
-  cart_description text,
+  item_description text,
   condiments Json,
   price decimal(12,2),
   active boolean
 );
 
-INSERT INTO menu_item(id,customer_id,cart_id,item_name,category_id,offer_id,cart_description,condiments,price,active)
+INSERT INTO menu_item(id,customer_id,cart_id,item_name,category_id,offer_id,item_description,condiments,price,active)
 VALUES
-('12345678-1-1','12345678','12345678-1','Chicken Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: true },{ id: 3, value: "green sauce", isChecked: false },{ id: 3, value: "salad", isChecked: false }]',6,1),
-('12345678-1-2','12345678','12345678-1','Lamb Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: false },{ id: 3, value: "green sauce", isChecked: true },{ id: 3, value: "salad", isChecked: false }]',6,1),
-('12345679-1-1','12345679','12345679-1','Combo Over Rice',1,1,'Halal cart offering multiple halal meals','[{ id: 1, value: "white sauce", isChecked: false },{ id: 2, value: "red sauce", isChecked: false },{ id: 3, value: "green sauce", isChecked: true },{ id: 3, value: "salad", isChecked: true }]',7,1);
+('12345678-1-1','12345678','12345678-1','Chicken Over Rice',1,1,'halal chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+('12345678-1-2','12345678','12345678-1','Lamb Over Rice',1,1,'halal lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+('12345679-1-1','12345679','12345679-1','Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',7,1);
 
 
 CREATE TABLE in_offer (
