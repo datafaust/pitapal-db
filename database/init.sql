@@ -93,8 +93,8 @@ CREATE TABLE offer (
 
 INSERT INTO offer(id,datetime_active_from,datetime_active_to,offer_price)
 VALUES
-(1,'2020-10-15-01 09:17:17', '2020-12-21-01 09:17:17',4),
-(2,'2020-09-15-01 07:17:16', '2020-11-21-01 07:17:16',3);
+(1,STR_TO_DATE('10/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'), STR_TO_DATE('12/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'),4),
+(2,STR_TO_DATE('10/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'), STR_TO_DATE('12/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'),3);
 
 CREATE TABLE placed_orders (
   id int PRIMARY KEY,
