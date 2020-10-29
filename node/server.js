@@ -11,8 +11,8 @@ const port = 3008;
 
 //connection for database
 const pool = mysql.createPool({
-    //host : "mysql",  
-    host: '192.168.1.183',
+    host : "mysql",  
+    //host: '192.168.1.183',
     user : "root",
     password : "password",
     database : "pitapaldb",
