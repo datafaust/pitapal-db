@@ -22,7 +22,8 @@ VALUES
 (3,'Boston',11389);
 
 CREATE TABLE customer (
-  id varchar(255) PRIMARY KEY,
+  id int PRIMARY KEY AUTO_INCREMENT,
+  fbid VARCHAR(255),
   customer_name varchar(255),
   city_id int,
   phone varchar(255),

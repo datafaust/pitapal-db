@@ -109,6 +109,7 @@ app.post('/addCustomer',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
     var my_data = {
         id: req.query.id,
+        fbid: req.query.id,
         customer_name: req.query.customer_name,
         city_id:req.query.city_id,
         phone:req.query.phone,
