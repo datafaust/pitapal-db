@@ -134,6 +134,55 @@ app.post('/addCustomer',  cors(), (req, res) => {
     });
 });
 
+//RETRIEVE CUSTOMER DATABASE UNIQUE ID
+app.get('customer/fbid:',  function(req,res){
+    var fbid = req.params.fbid;
+
+    var sql = "SELECT * FROM pitapaldb.customer where fbid = '"+fbid+"';";
+ pool.query(sql, function(err, results) {
+     if(err) {
+         console.log(err)
+     } else {
+         console.log(results)
+        return res.json({
+            data: results
+        })
+       
+     }
+ });
+});
+
+
+//POST A CART
+app.post('/addCart',  cors(), (req, res) => {
+    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
+      var values = {
+        //id: req.query.id,
+        customer_id: req.query.customer_id,
+        cart_name: req.query.cart_name,
+        lat: req.query.lat,
+        lon: req.query.lon,
+        cart_address: req.query.cart_address,
+        active: req.query.active,
+        city_id: req.query.city_id
+       }
+
+       // now the createStudent is an object you can use in your database insert logic.
+       pool.query('INSERT INTO pitapaldb.carts SET ?', values, function (err, results) {
+        if(err) {
+            console.log(err)
+            return res.send(err)
+            
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+
 //POST TO PENDING MENU
 app.post('/addMenuItem',  cors(), (req, res) => {
     //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
@@ -218,34 +267,6 @@ app.post('/addMenuItemCond',  cors(), (req, res) => {
 
 
 
-//POST A CART
-app.post('/addCart',  cors(), (req, res) => {
-    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
-      var values = {
-        id: req.query.id,
-        customer_id: req.query.customer_id,
-        cart_name: req.query.cart_name,
-        lat: req.query.lat,
-        lon: req.query.lon,
-        cart_address: req.query.cart_address,
-        active: req.query.active,
-        city_id: req.query.city_id
-       }
-
-       // now the createStudent is an object you can use in your database insert logic.
-       pool.query('INSERT INTO pitapaldb.carts SET ?', values, function (err, results) {
-        if(err) {
-            console.log(err)
-            return res.send(err)
-            
-        } else {
-            console.log(results)
-            return res.json({
-                data: results
-            })
-        }
-    });
-});
 
 
 
