@@ -55,9 +55,9 @@ VALUES
 
 
 CREATE TABLE menu_item (
-  id varchar(255) PRIMARY KEY,
+  id int PRIMARY KEY AUTO_INCREMENT,
   customer_id varchar(255),
-  cart_id varchar(255),
+  cart_id int,
   item_name varchar(255),
   category_id int,
   offer_id int,
@@ -69,24 +69,24 @@ CREATE TABLE menu_item (
 
 INSERT INTO menu_item(id,customer_id,cart_id,item_name,category_id,offer_id,item_description,condiments,price,active)
 VALUES
-('12345678-1-1','12345678','12345678-1','Chicken Over Rice',1,1,'halal chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
-('12345678-1-2','12345678','12345678-1','Lamb Over Rice',1,1,'halal lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
-('12345679-1-1','12345679','12345679-1','Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',7,1);
-
+(1,'koojo',1,'Chicken Over Rice',1,1,'halal chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+(2,'koojo',2,'Lamb Over Rice',1,1,'halal lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+(3,'foosi',3,'Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',7,1),
+(4,'foosi',3,'Drink',1,1,'Drink','[{ "id": "1", "value": "soda", "isChecked": "false" },{ "id": "2", "value": "water", "isChecked": "true" }]',7,1);
 
 CREATE TABLE in_offer (
-  id int PRIMARY KEY,
+  id int PRIMARY KEY AUTO_INCREMENT,
   offer_id int,
-  menu_item_id varchar(255)
+  menu_item_id int
 );
 
 INSERT INTO in_offer(id,offer_id,menu_item_id)
 VALUES
-(12345,1,'12345678-1-1'),
-(12346,2,'12345678-1-2');
+(1,1,1),
+(2,1,2);
 
 CREATE TABLE offer (
-  id int PRIMARY KEY,
+  id int PRIMARY KEY AUTO_INCREMENT,
   datetime_active_from timestamp,
   datetime_active_to timestamp,
   offer_price decimal(12,2)
