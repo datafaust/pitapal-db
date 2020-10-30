@@ -33,8 +33,8 @@ CREATE TABLE customer (
 
 INSERT INTO customer(id,customer_name,city_id,phone,email,time_joined)
 VALUES
-('12345678', 'John Smith', 1, '7189786524', 'jsmith@gmail.com', '2020-10-01 22:00:00'),
-('12345679', 'Allam Fromberg', 1, '6469786578', 'aberg@gmail.com', '2020-10-04 13:00:00');
+(1,'oisosfsofifsoifosf', 'John Smith', 1, '7189786524', 'jsmith@gmail.com', '2020-10-01 22:00:00'),
+(2,'fdjsidjsidjsidisjd', 'Allam Fromberg', 1, '6469786578', 'aberg@gmail.com', '2020-10-04 13:00:00');
 
 CREATE TABLE carts (
   id varchar(255) PRIMARY KEY,
