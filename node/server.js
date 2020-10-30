@@ -52,7 +52,7 @@ app.get('/customer',  function(req,res){
 });
 
 //PULL A SPECIFIC CART
-app.get('cart/customer_id:',  function(req,res){
+app.get('/cart/:customer_id',  function(req,res){
     var customer_id = req.params.customer_id;
 
     var sql = "SELECT * FROM pitapaldb.carts where customer_id = '"+customer_id+"';";

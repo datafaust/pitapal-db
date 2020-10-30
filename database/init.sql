@@ -72,7 +72,7 @@ VALUES
 (1,'koojo',1,'Chicken Over Rice',1,1,'halal chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
 (2,'koojo',2,'Lamb Over Rice',1,1,'halal lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
 (3,'foosi',3,'Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',7,1),
-(4,'foosi',3,'Drink',1,1,'Drink','[{ "id": "1", "value": "soda", "isChecked": "false" },{ "id": "2", "value": "water", "isChecked": "true" }]',7,1);
+(4,'foosi',3,'Drink',1,1,'Drink','[{ "id": "1", "value": "soda", "isChecked": "false" },{ "id": "2", "value": "water", "isChecked": "true" }]',1,1);
 
 CREATE TABLE in_offer (
   id int PRIMARY KEY AUTO_INCREMENT,
@@ -98,11 +98,11 @@ VALUES
 (2,STR_TO_DATE('10/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'), STR_TO_DATE('12/01/2020 10:10:15','%d/%m/%Y %H:%i:%s'),3);
 
 CREATE TABLE placed_orders (
-  id int PRIMARY KEY,
-  cart_id varchar(255),
+  id int PRIMARY KEY AUTO_INCREMENT,
+  cart_id int,
   order_time datetime,
   customer_id varchar(255),
-  menu_item_id varchar(255),
+  menu_item_id int,
   condiments json,
   price decimal(12,2),
   discount decimal(12,2),
@@ -112,7 +112,7 @@ CREATE TABLE placed_orders (
 );
 
 CREATE TABLE comment (
-  id int PRIMARY KEY,
+  id int PRIMARY KEY AUTO_INCREMENT,
   placed_order_id int,
   comment_text text,
   ts timestamp
@@ -141,3 +141,4 @@ CREATE TABLE status_catalogue (
   id int,
   status_nam varchar(255)
 );
+
