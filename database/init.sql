@@ -54,6 +54,14 @@ VALUES
 (3,'foosi','Adels Halal', '43.0987', '-73.0987', '110-32 Munch Street', '1',1);
 
 
+CREATE TABLE menu (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  cart_id int,
+  menu_name varchar(255),
+  time_created timestamp
+);
+
+
 CREATE TABLE menu_item (
   id int PRIMARY KEY AUTO_INCREMENT,
   customer_id varchar(255),

@@ -89,6 +89,44 @@ app.delete('/deleteCart',  cors(), (req, res) => {
   });
 });
 
+
+//CREATE A MENU
+app.post('/addMenu',  cors(), (req, res) => {
+    //current_time = moment().utcOffset('-0400').format("YYYY-MM-DD HH:mm:ss").substr(0,18)+'0';
+    var my_data = {
+        cart_id: req.query.cart_id,
+        menu_name: req.query.menu_name,
+        time_created: req.query.time_created,
+       }
+       // now the createStudent is an object you can use in your database insert logic.
+       pool.query('INSERT INTO pitapaldb.menu SET ?', my_data, function (err, results) {
+        if(err) {
+            console.log(err)
+            return res.send(err)
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+//DELETE A SPECIFIC MENU
+app.delete('/deleteMenu',  cors(), (req, res) => {
+    var my_data = {id: req.query.id}
+    // now the createStudent is an object you can use in your database insert logic.
+    var sql = "DELETE FROM pitapaldb.menu WHERE id = '"+my_data.id+"'";
+    pool.query(sql, function (err, result) {
+    if (err) throw err;
+  });
+});
+
+
+
+
+
+
 //PULL ALL MENU ITEMS FROM STAGING
 app.get('/menus',  function(req,res){
     var sql = "SELECT * FROM pitapaldb.menu_item;";
