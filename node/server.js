@@ -122,6 +122,24 @@ app.delete('/deleteMenu',  cors(), (req, res) => {
   });
 });
 
+//GET A MENU FOR A SPECIFIC CART
+app.get('/menu/:cart_id',  function(req,res){
+    var cart_id = req.params.cart_id;
+
+    var sql = "SELECT * FROM pitapaldb.menu where cart_id = '"+cart_id+"';";
+ pool.query(sql, function(err, results) {
+     if(err) {
+         console.log(err)
+     } else {
+         console.log(results)
+        return res.json({
+            data: results
+        })
+       
+     }
+ });
+});
+
 
 
 
