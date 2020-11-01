@@ -51,6 +51,21 @@ app.get('/customer',  function(req,res){
     });
 });
 
+//PULL ALL MENU KEY ITEMS
+app.get('/mealKey',  function(req,res){
+    var sql = "SELECT * FROM pitapaldb.meal_key;";
+    pool.query(sql, function(err, results) {
+        if(err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+
 //PULL A SPECIFIC CART
 app.get('/cart/:customer_id',  function(req,res){
     var customer_id = req.params.customer_id;
