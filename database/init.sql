@@ -66,13 +66,13 @@ CREATE TABLE meal_key (
   ,meal        VARCHAR(17) NOT NULL
   ,meal_description VARCHAR(9) NOT NULL
 );
-INSERT INTO mytable(id,meal,meal_description) VALUES (1,'chicken over rice','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (2,'lamb over rice','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (3,'combo over rice','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (4,'fish over rice','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (5,'chicken gyro','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (6,'lamb gyro','blah blah');
-INSERT INTO mytable(id,meal,meal_description) VALUES (7,'combo gyro','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (1,'chicken over rice','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (2,'lamb over rice','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (3,'combo over rice','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (4,'fish over rice','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (5,'chicken gyro','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (6,'lamb gyro','blah blah');
+INSERT INTO meal_key(id,meal,meal_description) VALUES (7,'combo gyro','blah blah');
 
 
 
