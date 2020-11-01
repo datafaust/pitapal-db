@@ -6,7 +6,7 @@ Includes a node server and mysql database. Table schema is created automatically
 2. make sure you have docker and docker-compose installed
 3. to run locally, change the host in the node `server.js` file to your ip address
 4. go into the root directory of the repo
-5. run `docker-compose run -d` 
+5. run `docker-compose up -d` 
 6. once the process is complete you can run `docker ps` to check the status
 7. then connect with workbench using your ip address as the host
 
