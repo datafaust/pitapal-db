@@ -1,5 +1,5 @@
 module.exports = app => {
-    const mealKey = require("../controllers/mealkey.controller.js");
+    const mealKey = require("../controllers/mealKey.controller.js");
   
     // Create a new Customer
     app.post("/mealKey", mealKey.create);
