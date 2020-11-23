@@ -36,7 +36,7 @@ VALUES
 (1,'koojo', 'John Smith', 1, '7189786524', 'jsmith@gmail.com', '2020-10-01 22:00:00'),
 (2,'foosi', 'Allam Fromberg', 1, '6469786578', 'aberg@gmail.com', '2020-10-04 13:00:00');
 
-CREATE TABLE carts (
+CREATE TABLE cart (
   id int PRIMARY KEY AUTO_INCREMENT,
   customer_id varchar(255),
   cart_name varchar(255),
@@ -47,7 +47,7 @@ CREATE TABLE carts (
   city_id int
 );
 
-INSERT INTO carts(id,customer_id,cart_name,lat,lon,cart_address,active,city_id)
+INSERT INTO cart(id,customer_id,cart_name,lat,lon,cart_address,active,city_id)
 VALUES
 (1,'koojo','Rafiqquis Halal', '43.0000', '-73.0000', '23-55 Broadway Street', '1',1),
 (2,'koojo','Rafiqquis Halal', '43.1212', '-73.2431', '57-34 Main Street', '1',1),
