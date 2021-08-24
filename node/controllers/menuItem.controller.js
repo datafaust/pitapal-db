@@ -1,4 +1,4 @@
-const Menu = require("../models/menu.model.js");
+const MenuItem = require("../models/menuItem.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -9,18 +9,24 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a Customer
-    const menu = new Menu({
+    // Create a Menu Item
+    const menuItem = new MenuItem({
+      customer_id: req.query.customer_id,
       cart_id: req.query.cart_id,
-      menu_name: req.query.menu_name,
-      time_created: req.query.time_created,
+      item_name: req.query.item_name,
+      category_id: req.query.category_id,
+      offer_id: req.query.offer_id,
+      item_description: req.query.item_description,
+      condiments: req.query.condiments,
+      price: req.query.price,
+      active: req.query.active
     });
 
-    console.log(menu)
-
+    console.log(menuItem)
+ 
 
     // Save Customer in the database
-     Menu.create(menu, (err, data) => {
+    MenuItem.create(menuItem, (err, data) => {
          if (err)
              res.status(500).send({
                  message:
@@ -32,7 +38,7 @@ exports.create = (req, res) => {
  
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-    Menu.getAll((err, data) => {
+    MenuItem.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -49,7 +55,7 @@ exports.findOne = (req, res) => {
 
 // Find a single Cart with a customerId
 exports.findOneWithCart = (req, res) => {
-    Menu.findByCart(req.params.cart_id, (err, data) => {
+    MenuItem.findByCart(req.params.cart_id, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             return []
@@ -73,7 +79,7 @@ exports.update = (req, res) => {
 // Delete a Cart with the specified cartId in the request
 exports.delete = (req, res) => {
     console.log('FIRING DELETE....', req.params.id)
-      Menu.remove(req.params.id, (err, data) => {
+      MenuItem.remove(req.params.id, (err, data) => {
           if (err) {
             if (err.kind === "not_found") {
               return []

@@ -2,30 +2,32 @@ const sql = require("./db.js");
 
 
 // Constructor
-const Cart =  function(cart)  {
-  this.customer_id= cart.customer_id,
-  this.cart_name= cart.cart_name,
-  this.lat= cart.lat,
-  this.lon= cart.lon,
-  this.cart_address= cart.cart_address,
-  this.active= cart.active,
-  this.city_id= cart.city_id
+const MenuItem =  function(menuItem)  {
+  this.customer_id =  menuItem.customer_id,
+  this.cart_id = menuItem.cart_id
+  this.item_name = menuItem.item_name,
+  this.category_id = menuItem.category_id,
+  this.offer_id = menuItem.offer_id,
+  this.item_description = menuItem.item_description,
+  this.condiments = menuItem.condiments,
+  this.price = menuItem.price,
+  this.active = menuItem.active
 };
 
-Cart.create = (newCart, result) => {
-  sql.query("INSERT INTO pitapaldb.cart SET ?", newCart, (err, res) => {
+MenuItem.create = (newMenuItem, result) => {
+  sql.query("INSERT INTO pitapaldb.menu SET ?", newMenu, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("created cart: ", { id: res.insertId, ...newCart });
-    result(null, { id: res.insertId, ...newCart });
+    console.log("created Menu: ", { id: res.insertId, ...newMenu });
+    result(null, { id: res.insertId, ...newMenu });
   });
 };
 
-Cart.findById = (customerId, result) => {
+MenuItem.findById = (customerId, result) => {
   sql.query(`SELECT * FROM pitapaldb.customer WHERE id = ${customerId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -43,9 +45,9 @@ Cart.findById = (customerId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-
-Cart.findByCustomerId = (customerId, result) => {
-  sql.query("SELECT * FROM pitapaldb.cart where customer_id = '"+customerId+"';", (err, res) => {
+ 
+MenuItem.findByCart = (cartId, result) => {
+  sql.query("SELECT * FROM pitapaldb.menu_item where cart_id = '"+cartId+"';", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,7 +55,7 @@ Cart.findByCustomerId = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found cart: ", res);
+      console.log("found Menu: ", res);
       result(null, res);
       return res;
     }
@@ -63,20 +65,20 @@ Cart.findByCustomerId = (customerId, result) => {
   });
 };
 
-Cart.getAll = result => {
-  sql.query("SELECT * FROM pitapaldb.cart as cart LEFT JOIN pitapaldb.rating as rating ON cart.id = rating.id;", (err, res) => {
+MenuItem.getAll = result => {
+  sql.query("SELECT * FROM pitapaldb.menu_item;", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    console.log("customers: ", res);
+    console.log("menu items: ", res);
     result(null, res);
   });
 };
 
-Cart.updateById = (id, customer, result) => {
+MenuItem.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE pitapaldb.customer SET email = ?, name = ?, active = ? WHERE id = ?",
     [customer.email, customer.name, customer.active, id],
@@ -99,8 +101,8 @@ Cart.updateById = (id, customer, result) => {
   );
 };
 
-Cart.remove = (id, result) => {
-  sql.query("DELETE FROM pitapaldb.cart WHERE id = ?", id, (err, res) => {
+MenuItem.remove = (id, result) => {
+  sql.query("DELETE FROM pitapaldb.menu WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -118,7 +120,7 @@ Cart.remove = (id, result) => {
   });
 };
 
-Cart.removeAll = result => {
+MenuItem.removeAll = result => {
   sql.query("DELETE FROM pitapaldb.customer", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -131,4 +133,4 @@ Cart.removeAll = result => {
   });
 };
 
-module.exports = Cart;
+module.exports = MenuItem;

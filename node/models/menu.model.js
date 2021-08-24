@@ -39,7 +39,7 @@ Menu.findById = (customerId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-
+ 
 Menu.findByCart = (cartId, result) => {
   sql.query("SELECT * FROM pitapaldb.menu where cart_id = '"+cartId+"';", (err, res) => {
     if (err) {
@@ -60,7 +60,7 @@ Menu.findByCart = (cartId, result) => {
 };
 
 Menu.getAll = result => {
-  sql.query("SELECT * FROM pitapaldb.Menu", (err, res) => {
+  sql.query("SELECT * FROM pitapaldb.menu;", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

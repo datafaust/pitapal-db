@@ -44,14 +44,32 @@ CREATE TABLE cart (
   lon float,
   cart_address varchar(255),
   active boolean,
-  city_id int
+  city_id int,
+  image_pathLocation varchar(1024)
 );
 
-INSERT INTO cart(id,customer_id,cart_name,lat,lon,cart_address,active,city_id)
+INSERT INTO cart(id,customer_id,cart_name,lat,lon,cart_address,active,city_id, image_pathLocation)
 VALUES
-(1,'koojo','Rafiqquis Halal', '43.0000', '-73.0000', '23-55 Broadway Street', '1',1),
-(2,'koojo','Rafiqquis Halal', '43.1212', '-73.2431', '57-34 Main Street', '1',1),
-(3,'foosi','Adels Halal', '43.0987', '-73.0987', '110-32 Munch Street', '1',1);
+(1,'koojo','Rafiqquis Halal', '40.7484', '-73.9857', '23-55 Broadway Street', '1',1,'...'),
+(2,'kokol','Mofa Halal', '40.7465', '-74.0014', '57-34 Main Street', '1',1,'...'),
+(3,'foosin','Adels Halal', '40.7366', '-73.8201', '110-32 Munch Street', '1',1,'...'),
+(4,'jhosi','Faustos Halal', '40.7678', '-73.9645', '110-32 Munch Street', '1',1,'...'),
+(5,'posw','Niks Halal', '40.7359', '-73.9911', '110-32 Munch Street', '1',1,'...'),
+(6,'klio','Salims Halal', '40.7368', '-73.9845', '110-32 Munch Street', '1',1,'...');
+
+CREATE TABLE rating (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  rating float
+);
+
+INSERT INTO rating(id,rating)
+VALUES
+(1,4.7),
+(2,4.5),
+(3,3.5),
+(4,4.9),
+(5,4.1),
+(6,3.9);
 
 
 CREATE TABLE menu (
@@ -60,6 +78,12 @@ CREATE TABLE menu (
   menu_name varchar(255),
   time_created timestamp
 );
+
+INSERT INTO menu(id,cart_id,menu_name,time_created)
+VALUES
+(1,1,'my menu','2020-10-01 22:00:00'),
+(2,2,'our menu','2020-11-03 21:00:00');
+
 
 CREATE TABLE meal_key (
    id          INTEGER  NOT NULL PRIMARY KEY 
@@ -94,7 +118,11 @@ VALUES
 (1,'koojo',1,'Chicken Over Rice',1,1,'halal chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
 (2,'koojo',2,'Lamb Over Rice',1,1,'halal lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
 (3,'foosi',3,'Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',7,1),
-(4,'foosi',3,'Drink',1,1,'Drink','[{ "id": "1", "value": "soda", "isChecked": "false" },{ "id": "2", "value": "water", "isChecked": "true" }]',1,1);
+(4,'foosi',3,'Drink',1,1,'Drink','[{ "id": "1", "value": "soda", "isChecked": "false" },{ "id": "2", "value": "water", "isChecked": "true" }]',1,1),
+(5,'koojo',1,'Lamb Over Rice',1,1,'lamb served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+(6,'koojo',1,'Combo Over Rice',1,1,'lamb and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1),
+(7,'koojo',1,'Fish Over Rice',1,1,'fish and chicken served over rice','[{ "id": "1", "value": "white sauce", "isChecked": "false" },{ "id": "2", "value": "red sauce", "isChecked": "true" },{ "id": "3", "value": "green sauce", "isChecked": "false" },{ "id": "3", "value": "salad", "isChecked": "false" }]',6,1);
+
 
 CREATE TABLE in_offer (
   id int PRIMARY KEY AUTO_INCREMENT,

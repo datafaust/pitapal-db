@@ -21,6 +21,7 @@ require("./routes/customer.routes.js")(app);
 require("./routes/cart.routes.js")(app);
 require("./routes/menu.routes.js")(app);
 require("./routes/mealKey.routes.js")(app);
+require("./routes/menuItem.routes.js")(app);
 
 // set port, listen for requests
 app.listen(port, () => {

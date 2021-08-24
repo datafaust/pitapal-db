@@ -21,4 +21,4 @@ module.exports = app => {
   
     // Delete a new Customer
     app.delete("/menus", menus.deleteAll);
-  };
+  }; 
