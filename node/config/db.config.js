@@ -1,7 +1,8 @@
 module.exports = {
-    //HOST: "192.168.1.183",
+    //HOST: "localhost",
     HOST: "mysql",
     USER: "root",
     PASSWORD: "password",
-    DB: "pitapaldb"
+    DB: "pitapaldb",
+    PORT: 3306
   };
